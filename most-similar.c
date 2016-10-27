@@ -73,7 +73,7 @@ int readline(char *buffer)
 
 int main(int argc, char *argv[])
 {
-    int opt, min_length = 1, length = 0; 
+    int opt, min_length = 1, length = 0;
     double min_similarlity = 0.0, similarlity = 0.0;
     char input[BUFSIZE] = {'\0'}, comparison[BUFSIZE] = {'\0'}, similitude[BUFSIZE] = {'\0'};
 
@@ -103,23 +103,28 @@ int main(int argc, char *argv[])
     if (*input == '_') {
         return 1;
     }
+
     similarlity = min_similarlity;
 
     while ((length = readline(comparison)) > -1) {
-        if (length < min_length || length < 1 || *comparison == '_')
+        if (length < min_length || length < 1 || *comparison == '_') {
             continue;
+        }
         double s = calc_similarity(input, comparison);
-        if (s < similarlity)
+        if (s < similarlity) {
             continue;
+        }
         similarlity = s;
         strncpy(similitude, comparison, BUFSIZE - 1);
-        if (s == 1.0)
+        if (s == 1.0) {
             break;
+        }
     }
 
     if (*similitude == '\0') {
         return 1;
     }
+
     puts(similitude);
     return 0;
 }
