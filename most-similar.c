@@ -68,9 +68,6 @@ int readline(char *buffer)
     if (length && buffer[length - 1] == '\n') {
         buffer[--length] = '\0';
     }
-    if (length && buffer[length - 1] == '\r') {
-        buffer[--length] = '\0';
-    }
     return length;
 }
 
